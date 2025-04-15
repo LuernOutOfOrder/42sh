@@ -3,14 +3,15 @@ CFLAGS =
 SRC = main.c
 OBJ = $(SRC:.c=.o)
 EXEC = 42sh
+OUTDIR = build/
 
 all: $(EXEC)
 
-$(EXEC): $(OBJ)
-	$(CC)	$(OBJ)	-o	$(EXEC)
+$(EXEC): $(OUTDIR)$(OBJ)
+	$(CC)	$(OUTDIR)$(OBJ)	-o	$(OUTDIR)$(EXEC)
 
-%.o: %.c
+$(OUTDIR)%.o: %.c
 	$(CC)	$(CFLAGS)	-c	$<	-o	$@
 
 clean:
-	rm	-f	$(OBJ)	$(EXEC)
+	rm	-f	$(OUTDIR)*
